@@ -1,5 +1,7 @@
 package at.ac.fhcampuswien;
 
+import sun.jvm.hotspot.tools.SysPropsDumper;
+
 import java.util.Scanner;
 
 public class App {
@@ -72,25 +74,43 @@ public class App {
     public void printPyramid() {
         // input your solution here
 
-        PrintStarPyramid(ROWS);
+        PrintPyramid(ROWS, '*', 0, false);
     }
 
-    private void PrintStarPyramid(int rows) {
+
+    // nextCharFromMiddle:
+    // -1: char-1
+    // 0: char stays the same
+    // (+)1: char+1
+    private void PrintPyramid(int rows, char charToPrint, int nextCharFromMiddle, boolean willReverse) {
         int colCnt;     // number of columns in row
-        int starCnt;    // number of stars in column
+        int charCnt;    // number of chars in column
+
+        if (willReverse) rows *= 2 - 1;
 
         // RowLoop
         for (int r = 0, c; r < rows; r++) {
             colCnt = (rows + r);
-            starCnt = (r * 2) + 1;
+            charCnt = (r * 2) + 1;
 
             // ColLoop
-            for (c = 0; c < colCnt; c++){
+            for (c = 0; c < colCnt; c++) {
 
                 // Check for character to print
-                if(c < colCnt - starCnt) System.out.print(" ");
-                else System.out.print("*");
+                if (c < colCnt - charCnt) System.out.print(" ");
+                else System.out.print(charToPrint);
             }
+
+            // ColLoop Reversed
+            if (willReverse) {
+                for (c = 0; c < colCnt; c++) {
+
+                    // Check for character to print
+                    if (c < colCnt - charCnt) System.out.print(" ");
+                    else System.out.print(charToPrint);
+                }
+            }
+
             System.out.println();
         }
     }
@@ -98,6 +118,22 @@ public class App {
     //todo Task 4
     public void printRhombus() {
         // input your solution here
+
+        int rowCnt;
+        char _char;
+
+        System.out.print("h: ");
+        rowCnt = sc.nextInt();
+        System.out.print("c: ");
+        _char = sc.next().charAt(0);
+
+        // Check for invalid input
+        if (rowCnt % 2 != 0) {
+            System.out.println("Invalid number!");
+            return;
+        }
+
+        // PrintPyramid(rowCnt, _char);
     }
 
     //todo Task 5
