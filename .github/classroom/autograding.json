@@ -1,0 +1,124 @@
+{
+  "tests": [
+    {
+      "name": "largestNumber1 (1 Point)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.largestNumber1",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "largestNumber2 (1 Point)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.largestNumber2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "stairs1 (1 Point)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.stairs1",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "stairs2 (1 Point)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.stairs2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "pyramid (2 Points)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.pyramid",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 2
+    },
+    {
+      "name": "rhombus1 (2 Points)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.rhombus1",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 2
+    },
+    {
+      "name": "rhombus2 (1 Point)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.rhombus2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "marks1 (1 Points)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.marks1",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "marks2 (1 Point)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.marks2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "happyNumber1 (2 Points)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.happyNumber1",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 2
+    },
+    {
+      "name": "happyNumber2 (1 Point)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.happyNumber2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "marks3 (1 Point)",
+      "setup": "",
+      "run": "gradle test --tests at.ac.fhcampuswien.AppTest.marks3",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
+    }
+  ]
+}
