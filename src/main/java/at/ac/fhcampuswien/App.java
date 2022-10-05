@@ -26,7 +26,7 @@ public class App {
             }
 
             // Check for stop-condition
-            if (input > 0){
+            if (input > 0) {
 
                 // Check for new largestNum and increment numCnt
                 if (input > largestNum) {
@@ -51,23 +51,48 @@ public class App {
         rowCnt = sc.nextInt();
 
         // Check for invalid input
-        if(rowCnt < 1){
+        if (rowCnt < 1) {
             System.out.println("Invalid number!");
             return;
         }
 
         // Print out triangle
-        for(int r = 0, c; r < rowCnt; r++){
-            for(c = 0; c <= r; c++){
+        for (int r = 0, c; r < rowCnt; r++) {
+            for (c = 0; c <= r; c++) {
                 System.out.print(cellIdx++ + " ");
             }
             System.out.println();
         }
     }
 
+    // Final vars
+    final int ROWS = 6;
+
     //todo Task 3
     public void printPyramid() {
         // input your solution here
+
+        PrintStarPyramid(ROWS);
+    }
+
+    private void PrintStarPyramid(int rows) {
+        int colCnt;     // number of columns in row
+        int starCnt;    // number of stars in column
+
+        // RowLoop
+        for (int r = 0, c; r < rows; r++) {
+            colCnt = (rows + r);
+            starCnt = (r * 2) + 1;
+
+            // ColLoop
+            for (c = 0; c < colCnt; c++){
+
+                // Check for character to print
+                if(c < colCnt - starCnt) System.out.print(" ");
+                else System.out.print("*");
+            }
+            System.out.println();
+        }
     }
 
     //todo Task 4
