@@ -44,7 +44,25 @@ public class App {
     public void stairs() {
         // input your solution here
 
+        int rowCnt;
+        int cellIdx = 1;
 
+        System.out.print("n: ");
+        rowCnt = sc.nextInt();
+
+        // Check for invalid input
+        if(rowCnt < 1){
+            System.out.println("Invalid number!");
+            return;
+        }
+
+        // Print out triangle
+        for(int r = 0, c; r < rowCnt; r++){
+            for(c = 0; c <= r; c++){
+                System.out.print(cellIdx++ + " ");
+            }
+            System.out.println();
+        }
     }
 
     //todo Task 3
