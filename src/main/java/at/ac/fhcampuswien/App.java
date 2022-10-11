@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -191,7 +192,7 @@ public class App {
         double markAverage = 0;
         int negMarkCnt = 0;
 
-        while (true){
+        while (true) {
             System.out.printf("Mark %d: ", markCnt + 1);
             mark = sc.nextInt();
 
@@ -204,7 +205,7 @@ public class App {
             } else break;
         }
 
-        if(markCnt > 0) markAverage /= markCnt;
+        if (markCnt > 0) markAverage /= markCnt;
 
         System.out.printf("Average: %.2f" + System.lineSeparator(), markAverage);
         System.out.printf("Negative marks: %d" + System.lineSeparator(), negMarkCnt);
@@ -213,6 +214,44 @@ public class App {
     //todo Task 6
     public void happyNumbers() {
         // input your solution here
+
+        int num;
+
+        System.out.print("n: ");
+        num = sc.nextInt();
+
+
+        do {
+            num = CalcNextNum(num);
+        } while (num != 1 && num != 4);
+
+        switch (num) {
+            case 1:
+                System.out.println("Happy number!");
+                break;
+            case 4:
+                System.out.println("Sad number!");
+                break;
+            default:
+                System.out.println("WTFAmI");
+        }
+    }
+
+    private int CalcNextNum(int num) {
+        int sumOfUnitsSquared = 0;
+
+        ArrayList<Integer> units = new ArrayList<>();
+
+        do {
+            units.add((int) Math.pow(num % 10, 2));
+            num /= 10;
+        } while (num > 0);
+
+        for (int u : units) {
+            sumOfUnitsSquared += u;
+        }
+
+        return sumOfUnitsSquared;
     }
 
     public static void main(String[] args) {
