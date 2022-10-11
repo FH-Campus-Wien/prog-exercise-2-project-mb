@@ -1,7 +1,5 @@
 package at.ac.fhcampuswien;
 
-import sun.jvm.hotspot.tools.SysPropsDumper;
-
 import java.util.Scanner;
 
 public class App {
@@ -74,45 +72,98 @@ public class App {
     public void printPyramid() {
         // input your solution here
 
-        PrintPyramid(ROWS, '*', 0, false);
+        PrintIsoscelesPolygon(ROWS, '*', false, 0, 0);
     }
 
 
-    // nextCharFromMiddle:
-    // -1: char-1
-    // 0: char stays the same
-    // (+)1: char+1
-    private void PrintPyramid(int rows, char charToPrint, int nextCharFromMiddle, boolean willReverse) {
+    // alterCharIdxFromMiddle: relative index from charToPrint
+    // targetCharIdx: relative index from middleIdx
+    private void PrintIsoscelesPolygon(int rowCnt, char charToPrint, boolean willReverse, int charIdxIncrement, int targetCharIdx) {
         int colCnt;     // number of columns in row
-        int charCnt;    // number of chars in column
+        int maxColCnt;  // max columns in polygon
 
-        if (willReverse) rows *= 2 - 1;
+        if (willReverse) maxColCnt = rowCnt;
+        else maxColCnt = (rowCnt * 2) - 1;
 
-        // RowLoop
-        for (int r = 0, c; r < rows; r++) {
-            colCnt = (rows + r);
-            charCnt = (r * 2) + 1;
-
-            // ColLoop
-            for (c = 0; c < colCnt; c++) {
-
-                // Check for character to print
-                if (c < colCnt - charCnt) System.out.print(" ");
-                else System.out.print(charToPrint);
-            }
-
-            // ColLoop Reversed
+        // row-Loop
+        for (int r = 0, i = 0; r < rowCnt; r++) {
             if (willReverse) {
-                for (c = 0; c < colCnt; c++) {
 
-                    // Check for character to print
-                    if (c < colCnt - charCnt) System.out.print(" ");
-                    else System.out.print(charToPrint);
+                // calc coefficient to alter the row count if willReverse and r on mirrored side
+                if (r > rowCnt / 2) {
+                    i += 2;
                 }
-            }
 
-            System.out.println();
+                // calc column count for current row
+                colCnt = (rowCnt + 1) / 2 + r - i;
+            } else colCnt = (rowCnt + r);
+
+            // print current row
+            System.out.println(PrintRowForIsocelesPolygon(charToPrint, colCnt, maxColCnt, charIdxIncrement, targetCharIdx));
         }
+    }
+
+    private java.lang.String PrintRowForIsocelesPolygon(char charToPrint, int colCnt, int maxColCnt, int charIdxIncrement, int targetCharIdx) {
+        // number of chars in column
+        // maxColCnt - colCnt corresponds to whitspaces
+        int charCnt = colCnt - (maxColCnt - colCnt);
+
+        // (charCnt + 1) / 2 corresponds to the middle index of a row
+        // -1 because my indexes start with zero
+        int splitIdx = (((charCnt + 1) / 2) - 1) + targetCharIdx;
+
+        // starting index of char in current row
+        int startCharIdx = splitIdx * charIdxIncrement;
+
+        // currCharIdx increments with Abs(charIdxIncrement)
+        int currCharIdx;
+        int currIdx;
+
+
+        // alteredCharToPrint can be initialized with startCharIdx
+        // because startCharIdx defines the first char in a row
+        char alteredCharToPrint = (char) (charToPrint + startCharIdx);
+
+        StringBuilder strToPrint = new StringBuilder();
+
+        // col-Loop
+        for (int c = 0; c < colCnt; c++) {
+
+            // check for current char to print
+            if (c < (colCnt - charCnt)) strToPrint.append(" ");
+            else {
+
+                // alter char if needed
+                if (charIdxIncrement != 0) {
+
+                    // currIdx: absolute index of current character
+                    // c - (colCnt - charCnt) is the current index
+                    currIdx = c - (colCnt - charCnt);
+
+                    // currCharIdx: relative index to current character
+                    // Abs(charIdxIncrement) defines increment interval
+                    currCharIdx = currIdx * charIdxIncrement;
+
+                    // first segment of row
+                    if (currIdx < splitIdx) {
+                        // '*(-1)' changes the sign of incrementation
+                        // needed because programm is defined to run from left to right
+                        alteredCharToPrint = (char) (charToPrint + startCharIdx + currCharIdx * (-1));
+                    }
+
+                    // second segment of row
+                    else {
+                        // currCharIdx - splitIdx * charIdxIncrement: restets the starting point to charToPrint
+                        // * charIdxIncrement changes splitIdx to relative indexing
+                        alteredCharToPrint = (char) (charToPrint + (currCharIdx - splitIdx * charIdxIncrement));
+                    }
+                }
+
+                strToPrint.append(alteredCharToPrint);
+            }
+        }
+
+        return strToPrint.toString();
     }
 
     //todo Task 4
@@ -127,13 +178,10 @@ public class App {
         System.out.print("c: ");
         _char = sc.next().charAt(0);
 
-        // Check for invalid input
-        if (rowCnt % 2 != 0) {
-            System.out.println("Invalid number!");
-            return;
-        }
-
-        // PrintPyramid(rowCnt, _char);
+        // Check for invalid height input
+        if (rowCnt > 0 && rowCnt % 2 != 0) {
+            PrintIsoscelesPolygon(rowCnt, _char, true, -1, 0);
+        } else System.out.println("Invalid number!");
     }
 
     //todo Task 5
