@@ -3,6 +3,8 @@ package at.ac.fhcampuswien;
 import java.util.Scanner;
 
 public class App {
+    // Final vars
+    final int ROWS = 6;
 
     // Global vars
     Scanner sc = new Scanner(System.in);
@@ -64,17 +66,6 @@ public class App {
             System.out.println();
         }
     }
-
-    // Final vars
-    final int ROWS = 6;
-
-    //todo Task 3
-    public void printPyramid() {
-        // input your solution here
-
-        PrintIsoscelesPolygon(ROWS, '*', false, 0, 0);
-    }
-
 
     // alterCharIdxFromMiddle: relative index from charToPrint
     // targetCharIdx: relative index from middleIdx
@@ -166,6 +157,13 @@ public class App {
         return strToPrint.toString();
     }
 
+    //todo Task 3
+    public void printPyramid() {
+        // input your solution here
+
+        PrintIsoscelesPolygon(ROWS, '*', false, 0, 0);
+    }
+
     //todo Task 4
     public void printRhombus() {
         // input your solution here
@@ -187,6 +185,29 @@ public class App {
     //todo Task 5
     public void marks() {
         // input your solution here
+
+        int mark;
+        int markCnt = 0;
+        double markAverage = 0;
+        int negMarkCnt = 0;
+
+        while (true){
+            System.out.printf("Mark %d: ", markCnt + 1);
+            mark = sc.nextInt();
+
+            if (mark != 0) {
+                if (mark > 0 && mark < 6) {
+                    if (mark == 5) negMarkCnt++;
+                    markAverage += mark;
+                    markCnt++;
+                } else System.out.println("Invalid mark!");
+            } else break;
+        }
+
+        if(markCnt > 0) markAverage /= markCnt;
+
+        System.out.printf("Average: %.2f" + System.lineSeparator(), markAverage);
+        System.out.printf("Negative marks: %d" + System.lineSeparator(), negMarkCnt);
     }
 
     //todo Task 6
